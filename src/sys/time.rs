@@ -159,6 +159,20 @@ impl TimeSpec {
     pub fn tv_nsec(&self) -> c_long {
         self.0.tv_nsec
     }
+
+    pub fn utime_omit() -> Self {
+        Self(timespec {
+            tv_sec: 0,
+            tv_nsec: libc::UTIME_OMIT,
+        })
+    }
+
+    pub fn utime_now() -> Self {
+        Self(timespec {
+            tv_sec: 0,
+            tv_nsec: libc::UTIME_NOW,
+        })
+    }
 }
 
 impl ops::Neg for TimeSpec {
